@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}Add Homework{% endblock %}
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card p-4">
+            <h4 class="mb-1">Add Homework</h4>
+            <p class="page-subtitle mb-4">Adding to: {{ class_.name }}</p>
+            <form method="POST">
+                <div class="mb-3">
+                    <label class="form-label">Homework Title</label>
+                    <input type="text" name="title" class="form-control" placeholder="e.g. Chapter 3 Exercises" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Description <span class="text-muted">(optional)</span></label>
+                    <textarea name="description" class="form-control" rows="4" placeholder="Describe what students need to do..."></textarea>
+                </div>
+                <div class="mb-4">
+                    <label class="form-label">Due Date</label>
+                    <input type="date" name="due_date" class="form-control" required>
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Add Homework</button>
+            </form>
+            <p class="text-center mt-3 mb-0" style="font-size:0.875rem;">
+                <a href="/class/{{ class_.id }}">Back to class</a>
+            </p>
+        </div>
+    </div>
+</div>
+{% endblock %}

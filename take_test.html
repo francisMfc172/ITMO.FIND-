@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block title %}{{ test.title }}{% endblock %}
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+
+        <div class="card p-4 mb-4">
+            <div class="page-title mb-1">{{ test.title }}</div>
+            {% if test.description %}
+            <p class="page-subtitle mb-2">{{ test.description }}</p>
+            {% endif %}
+            <span class="badge bg-primary" style="width:fit-content;">{{ test.questions|length }} questions</span>
+        </div>
+
+        <form method="POST">
+            {% for q in test.questions %}
+            <div class="card p-4 mb-4">
+                <div class="mb-3" style="font-size:0.95rem;font-weight:600;color:#fff;">
+                    <span style="color:#10C75A;margin-right:8px;">{{ loop.index }}.</span>{{ q.question_text }}
+                </div>
+                <div class="d-flex flex-column gap-2">
+                    <label class="test-option d-flex align-items-center gap-3">
+                        <input type="radio" name="q_{{ q.id }}" value="a" required>
+                        <span class="badge bg-primary">A</span>
+                        <span>{{ q.option_a }}</span>
+                    </label>
+                    <label class="test-option d-flex align-items-center gap-3">
+                        <input type="radio" name="q_{{ q.id }}" value="b">
+                        <span class="badge bg-primary">B</span>
+                        <span>{{ q.option_b }}</span>
+                    </label>
+                    <label class="test-option d-flex align-items-center gap-3">
+                        <input type="radio" name="q_{{ q.id }}" value="c">
+                        <span class="badge bg-primary">C</span>
+                        <span>{{ q.option_c }}</span>
+                    </label>
+                    <label class="test-option d-flex align-items-center gap-3">
+                        <input type="radio" name="q_{{ q.id }}" value="d">
+                        <span class="badge bg-primary">D</span>
+                        <span>{{ q.option_d }}</span>
+                    </label>
+                </div>
+            </div>
+            {% endfor %}
+
+            <button type="submit" class="btn btn-success w-100 mb-3">Submit Test</button>
+        </form>
+
+        <div class="text-center mb-5">
+            <a href="/class/{{ test.class_id }}">Cancel and go back</a>
+        </div>
+
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}itmo.find{% endblock %} 🔍</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0ede6;
+            color: #f0ede6;
+            min-height: 100vh;
+        }
+
+        /* ── Navbar ── */
+        .navbar {
+            background-color: #1a1a1a !important;
+            border-bottom: 1px solid #2a2a2a;
+            padding: 0.85rem 0;
+        }
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: #FFFFFF !important;
+            letter-spacing: -0.3px;
+        }
+        .navbar-brand span { color: #10C75A; }
+        .nav-username { color: #9DA8B7; font-size: 0.875rem; }
+        .nav-badge {
+            background: #2a2a2a !important;
+            color: #10C75A !important;
+            font-size: 0.75rem;
+            padding: 3px 10px;
+            border-radius: 99px;
+            border: 1px solid #10C75A44;
+        }
+        .btn-nav-logout {
+            background: transparent;
+            border: 1px solid #3a3a3a;
+            color: #9DA8B7;
+            font-size: 0.8rem;
+            padding: 4px 14px;
+            border-radius: 6px;
+            transition: all 0.2s;
+        }
+        .btn-nav-logout:hover { background: #2a2a2a; color: #fff; }
+
+        /* ── Page wrapper ── */
+        .page-wrapper { padding: 2.5rem 0 4rem; }
+
+        /* ── Cards ── */
+        .card {
+            background: #ffffff !important;
+            border: 1px solid #ddd !important;
+            border-radius: 12px !important;
+            color: #1a1a1a !important;
+        }
+        .card-title, h4, h5, h6 { color: #1a1a1a; }
+        .text-muted { color: #888 !important; }
+
+        /* ── Inputs ── */
+        .form-control, .form-select {
+            background: #f7f7f7 !important;
+            border: 1px solid #ddd !important;
+            color: #1a1a1a !important;
+            border-radius: 8px;
+            padding: 10px 14px;
+            transition: border-color 0.2s;
+        }
+        .form-control:focus, .form-select:focus {
+            border-color: #10C75A !important;
+            box-shadow: 0 0 0 3px rgba(16, 199, 90, 0.12) !important;
+            background: #fff !important;
+            color: #1a1a1a !important;
+        }
+        .form-control::placeholder { color: #aaa; }
+        .form-label { color: #555; font-size: 0.85rem; font-weight: 500; margin-bottom: 6px; }
+
+        /* ── Buttons ── */
+        .btn-primary {
+            background: #10C75A !important;
+            border: none !important;
+            color: #0A0E24 !important;
+            font-weight: 600;
+            border-radius: 8px;
+            padding: 9px 20px;
+            transition: all 0.2s;
+        }
+        .btn-primary:hover { background: #0eaf4f !important; transform: translateY(-1px); }
+
+        .btn-success {
+            background: #7C4DFF !important;
+            border: none !important;
+            color: #fff !important;
+            font-weight: 600;
+            border-radius: 8px;
+            padding: 9px 20px;
+            transition: all 0.2s;
+        }
+        .btn-success:hover { background: #6B3FE0 !important; transform: translateY(-1px); }
+
+        .btn-outline-primary {
+            background: transparent !important;
+            border: 1px solid #10C75A !important;
+            color: #10C75A !important;
+            font-weight: 500;
+            border-radius: 8px;
+            transition: all 0.2s;
+        }
+        .btn-outline-primary:hover { background: #10C75A22 !important; }
+
+        .btn-outline-success {
+            background: transparent !important;
+            border: 1px solid #7C4DFF !important;
+            color: #7C4DFF !important;
+            font-weight: 500;
+            border-radius: 8px;
+            transition: all 0.2s;
+        }
+        .btn-outline-success:hover { background: #7C4DFF22 !important; }
+
+        .btn-outline-secondary {
+            background: transparent !important;
+            border: 1px solid #ccc !important;
+            color: #666 !important;
+            border-radius: 8px;
+            transition: all 0.2s;
+        }
+        .btn-outline-secondary:hover { background: #eee !important; color: #1a1a1a !important; }
+
+        .btn-outline-danger {
+            background: transparent !important;
+            border: 1px solid #FF4D6A !important;
+            color: #FF4D6A !important;
+            border-radius: 8px;
+        }
+        .btn-outline-danger:hover { background: #FF4D6A22 !important; }
+
+        /* ── Badges ── */
+        .badge.bg-primary {
+            background: #10C75A22 !important;
+            color: #0a9e45 !important;
+            border: 1px solid #10C75A44;
+            font-weight: 500;
+        }
+        .badge.bg-secondary {
+            background: #eee !important;
+            color: #666 !important;
+        }
+        .badge.bg-success {
+            background: #7C4DFF22 !important;
+            color: #7C4DFF !important;
+            border: 1px solid #7C4DFF44;
+        }
+
+        /* ── Alerts ── */
+        .alert-success { background: #10C75A18; border: 1px solid #10C75A44; color: #0a7a35; border-radius: 10px; }
+        .alert-danger  { background: #FF4D6A18; border: 1px solid #FF4D6A44; color: #c0132e; border-radius: 10px; }
+        .alert-info    { background: #4D9FFF18; border: 1px solid #4D9FFF44; color: #1a6dbf; border-radius: 10px; }
+        .alert-warning { background: #FFB74D18; border: 1px solid #FFB74D44; color: #a06000; border-radius: 10px; }
+
+        /* ── Inner list cards ── */
+        .inner-card {
+            background: #f7f5f2 !important;
+            border: 1px solid #ddd !important;
+            border-radius: 8px;
+            padding: 12px 16px;
+            margin-bottom: 8px;
+        }
+        .inner-card .fw-bold { color: #1a1a1a; }
+        .inner-card .text-danger { color: #e0002a !important; }
+
+        /* ── Input group labels ── */
+        .input-group-text {
+            background: #10C75A !important;
+            border: none !important;
+            color: #0A0E24 !important;
+            font-weight: 700;
+        }
+
+        /* ── Section headings ── */
+        .section-heading {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 0;
+        }
+
+        /* ── Avatar circles ── */
+        .avatar {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            background: #10C75A22;
+            border: 1px solid #10C75A44;
+            color: #0a9e45;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+
+        /* ── Join code pill ── */
+        .join-code-badge {
+            background: #7C4DFF22;
+            border: 1px solid #7C4DFF55;
+            color: #7C4DFF;
+            padding: 4px 14px;
+            border-radius: 99px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+        }
+
+        /* ── Test radio options ── */
+        .test-option {
+            background: #f7f5f2;
+            border: 1px solid #ddd !important;
+            border-radius: 8px;
+            padding: 12px 16px;
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+        .test-option:hover { border-color: #10C75A !important; background: #10C75A0A; }
+
+        /* ── Links ── */
+        a { color: #0a9e45; }
+        a:hover { color: #0eaf4f; }
+
+        /* ── Dividers ── */
+        hr { border-color: #ddd; }
+
+        /* ── Question cards ── */
+        .question-card { border-color: #ddd !important; }
+        .question-card .text-primary { color: #10C75A !important; }
+
+        /* ── Page titles ── */
+        .page-title { font-size: 1.5rem; font-weight: 700; color: #1a1a1a; }
+        .page-subtitle { color: #888; font-size: 0.9rem; }
+    </style>
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="container">
+        <a class="navbar-brand" href="/">itmo<span>.</span>find 🔍</a>
+        {% if current_user.is_authenticated %}
+        <div class="d-flex align-items-center gap-3">
+            <span class="nav-username">{{ current_user.username }}</span>
+            <span class="nav-badge">{{ current_user.role }}</span>
+            <a href="/logout" class="btn-nav-logout">Log out</a>
+        </div>
+        {% endif %}
+    </div>
+</nav>
+
+<div class="page-wrapper">
+    <div class="container">
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% for category, message in messages %}
+                <div class="alert alert-{{ category }} mb-4">{{ message }}</div>
+            {% endfor %}
+        {% endwith %}
+
+        {% block content %}{% endblock %}
+
+    </div>
+</div>
+
+</body>
+</html>

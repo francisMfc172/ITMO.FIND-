@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% block title %}Dashboard{% endblock %}
+{% block content %}
+
+{% if current_user.role == "teacher" %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <div class="page-title">My Classes</div>
+        <div class="page-subtitle">Manage your classes, books, homework and tests</div>
+    </div>
+    <a href="/create-class" class="btn btn-primary">+ Create a class</a>
+</div>
+
+{% if classes %}
+<div class="row g-3">
+    {% for class_ in classes %}
+    <div class="col-md-4">
+        <div class="card h-100 p-4">
+            <div class="mb-1" style="font-size:1rem;font-weight:600;color:#fff;">{{ class_.name }}</div>
+            <div class="page-subtitle mb-3">{{ class_.subject }}</div>
+            <div class="join-code-badge d-inline-block mb-3">{{ class_.join_code }}</div>
+            <a href="/class/{{ class_.id }}" class="btn btn-outline-primary btn-sm w-100">Open class</a>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+<div class="card p-5 text-center">
+    <div style="font-size:2rem;margin-bottom:1rem;">🏫</div>
+    <div class="page-title mb-2">No classes yet</div>
+    <p class="page-subtitle mb-4">Create your first class to get started.</p>
+    <a href="/create-class" class="btn btn-primary mx-auto" style="width:fit-content">Create a class</a>
+</div>
+{% endif %}
+
+{% else %}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <div class="page-title">My Classes</div>
+        <div class="page-subtitle">View your books, homework and tests</div>
+    </div>
+    <a href="/join-class" class="btn btn-success">+ Join a class</a>
+</div>
+
+{% if classes %}
+<div class="row g-3">
+    {% for class_ in classes %}
+    <div class="col-md-4">
+        <div class="card h-100 p-4">
+            <div class="mb-1" style="font-size:1rem;font-weight:600;color:#fff;">{{ class_.name }}</div>
+            <div class="page-subtitle mb-4">{{ class_.subject }}</div>
+            <a href="/class/{{ class_.id }}" class="btn btn-outline-success btn-sm w-100">Open class</a>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+<div class="card p-5 text-center">
+    <div style="font-size:2rem;margin-bottom:1rem;">🎓</div>
+    <div class="page-title mb-2">No classes yet</div>
+    <p class="page-subtitle mb-4">Join a class using the code from your teacher.</p>
+    <a href="/join-class" class="btn btn-success mx-auto" style="width:fit-content">Join a class</a>
+</div>
+{% endif %}
+
+{% endif %}
+{% endblock %}

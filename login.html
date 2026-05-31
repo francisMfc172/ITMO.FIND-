@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% block title %}Login{% endblock %}
+{% block content %}
+<div style="display:flex;flex-direction:column;align-items:center;padding-top:2rem;">
+
+    <div style="display:flex;flex-direction:column;align-items:center;margin-bottom:2rem;cursor:pointer;" onclick="toggleTheme()">
+        <div style="width:2px;height:40px;background:#1F2A4A;" id="wire"></div>
+        <div style="width:0;height:0;border-left:28px solid transparent;border-right:28px solid transparent;border-bottom:34px solid var(--shade-color);transition:border-bottom-color 0.5s;" id="shade"></div>
+        <div style="width:14px;height:14px;border-radius:50%;background:var(--bulb-color);margin-top:-2px;transition:all 0.5s;" id="bulb"></div>
+        <div style="width:1.5px;height:32px;background:#1F2A4A;margin-top:8px;transition:transform 0.15s;" id="cord"></div>
+        <div style="width:7px;height:7px;border-radius:50%;background:#1F2A4A;"></div>
+        <div style="font-size:11px;color:#3D4F72;margin-top:6px;letter-spacing:0.05em;">pull to switch</div>
+    </div>
+
+    <div class="card p-4" style="width:100%;max-width:420px;">
+        <h4 class="mb-1">Welcome back 🔍</h4>
+        <p class="page-subtitle mb-4">Log in to your itmo.find account</p>
+        <form method="POST">
+            <div class="mb-3">
+                <label class="form-label">Email</label>
+                <input type="email" name="email" class="form-control" placeholder="you@example.com" required>
+            </div>
+            <div class="mb-4">
+                <label class="form-label">Password</label>
+                <input type="password" name="password" class="form-control" placeholder="••••••••" required>
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Log in</button>
+        </form>
+        <p class="text-center mt-3 mb-0" style="font-size:0.875rem;">
+            Don't have an account? <a href="/register">Register</a>
+        </p>
+    </div>
+</div>
+
+<style>
+    :root { --shade-color: #1F2A4A; --bulb-color: #2A3A5A; }
+    body.light-mode { --shade-color: #c8a84b; --bulb-color: #ffd700; background-color: #f0ede6 !important; }
+    body.light-mode .card { background: #ffffff !important; border-color: #ddd !important; }
+    body.light-mode .form-control, body.light-mode .form-select { background: #f7f7f7 !important; border-color: #ddd !important; color: #1a1a1a !important; }
+    body.light-mode .form-control::placeholder { color: #aaa; }
+    body.light-mode h4, body.light-mode .page-title { color: #1a1a1a; }
+    body.light-mode .page-subtitle { color: #666 !important; }
+    body.light-mode .form-label { color: #555 !important; }
+    #bulb.on { box-shadow: 0 0 12px 5px rgba(255,215,0,0.6); }
+</style>
+
+<script>
+function toggleTheme() {
+    document.body.classList.toggle('light-mode');
+    const on = document.body.classList.contains('light-mode');
+    document.getElementById('bulb').classList.toggle('on', on);
+    const cord = document.getElementById('cord');
+    cord.style.transform = 'scaleY(1.2)';
+    setTimeout(() => cord.style.transform = 'scaleY(1)', 150);
+    localStorage.setItem('theme', on ? 'light' : 'dark');
+}
+if (localStorage.getItem('theme') === 'light') {
+    document.body.classList.add('light-mode');
+    document.getElementById('bulb').classList.add('on');
+}
+</script>
+{% endblock %}

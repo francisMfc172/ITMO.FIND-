@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %}Add Book{% endblock %}
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card p-4">
+            <h4 class="mb-1">Add a Book</h4>
+            <p class="page-subtitle mb-4">Adding to: {{ class_.name }}</p>
+            <form method="POST" enctype="multipart/form-data">
+                <div class="mb-3">
+                    <label class="form-label">Book Title</label>
+                    <input type="text" name="title" class="form-control" placeholder="e.g. Introduction to Algebra" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Description <span class="text-muted">(optional)</span></label>
+                    <textarea name="description" class="form-control" rows="3" placeholder="What is this book about?"></textarea>
+                </div>
+                <div class="mb-4">
+                    <label class="form-label">Upload File</label>
+                    <input type="file" name="file" class="form-control" accept=".pdf,.docx,.pptx,.png,.jpg,.jpeg" required>
+                    <div class="text-muted mt-1" style="font-size:0.8rem;">Supported: PDF, Word, PowerPoint, Images</div>
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Upload Book</button>
+            </form>
+            <p class="text-center mt-3 mb-0" style="font-size:0.875rem;">
+                <a href="/class/{{ class_.id }}">Back to class</a>
+            </p>
+        </div>
+    </div>
+</div>
+{% endblock %}

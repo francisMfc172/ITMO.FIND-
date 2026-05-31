@@ -1,0 +1,118 @@
+{% extends "base.html" %}
+{% block title %}{{ class_.name }}{% endblock %}
+{% block content %}
+
+<div class="row">
+    <div class="col-md-8">
+
+        <div class="card p-4 mb-4">
+            <div class="d-flex justify-content-between align-items-start">
+                <div>
+                    <div class="page-title mb-1">{{ class_.name }}</div>
+                    <div class="page-subtitle">{{ class_.subject }} &nbsp;·&nbsp; Teacher: {{ teacher.username }}</div>
+                </div>
+                {% if current_user.role == "teacher" %}
+                <span class="join-code-badge">{{ class_.join_code }}</span>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- Books -->
+        <div class="card p-4 mb-4">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <span class="section-heading">📚 Books</span>
+                {% if current_user.role == "teacher" %}
+                <a href="/class/{{ class_.id }}/add-book" class="btn btn-outline-primary btn-sm">+ Add book</a>
+                {% endif %}
+            </div>
+            {% if books %}
+                {% for book in books %}
+                <div class="inner-card d-flex justify-content-between align-items-center">
+                    <div>
+                        <div class="fw-bold">{{ book.title }}</div>
+                        {% if book.description %}<div class="text-muted small">{{ book.description }}</div>{% endif %}
+                    </div>
+                    <a href="/static/uploads/{{ book.filename }}" target="_blank" class="btn btn-primary btn-sm">Open</a>
+                </div>
+                {% endfor %}
+            {% else %}
+                <p class="text-muted mb-0">No books uploaded yet.</p>
+            {% endif %}
+        </div>
+
+        <!-- Homework -->
+        <div class="card p-4 mb-4">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <span class="section-heading">📝 Homework</span>
+                {% if current_user.role == "teacher" %}
+                <a href="/class/{{ class_.id }}/add-homework" class="btn btn-outline-primary btn-sm">+ Add homework</a>
+                {% endif %}
+            </div>
+            {% if homeworks %}
+                {% for hw in homeworks %}
+                <div class="inner-card">
+                    <div class="fw-bold">{{ hw.title }}</div>
+                    {% if hw.description %}<div class="text-muted small">{{ hw.description }}</div>{% endif %}
+                    <div class="mt-1" style="font-size:0.8rem;color:#FF4D6A;">Due: {{ hw.due_date }}</div>
+                </div>
+                {% endfor %}
+            {% else %}
+                <p class="text-muted mb-0">No homework assigned yet.</p>
+            {% endif %}
+        </div>
+
+        <!-- Tests -->
+        <div class="card p-4 mb-4">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <span class="section-heading">🧪 Tests</span>
+                {% if current_user.role == "teacher" %}
+                <a href="/class/{{ class_.id }}/create-test" class="btn btn-outline-primary btn-sm">+ Create test</a>
+                {% endif %}
+            </div>
+            {% if tests %}
+                {% for test in tests %}
+                <div class="inner-card d-flex justify-content-between align-items-center">
+                    <div>
+                        <div class="fw-bold">{{ test.title }}</div>
+                        {% if test.description %}<div class="text-muted small">{{ test.description }}</div>{% endif %}
+                        <div class="text-muted small mt-1">{{ test.questions|length }} questions</div>
+                    </div>
+                    {% if current_user.role == "student" %}
+                    <a href="/test/{{ test.id }}/take" class="btn btn-success btn-sm">Take test</a>
+                    {% else %}
+                    <span class="badge bg-secondary">{{ test.questions|length }} q</span>
+                    {% endif %}
+                </div>
+                {% endfor %}
+            {% else %}
+                <p class="text-muted mb-0">No tests available yet.</p>
+            {% endif %}
+        </div>
+
+    </div>
+
+    <!-- Sidebar -->
+    <div class="col-md-4">
+        <div class="card p-4 mb-3">
+            <span class="section-heading mb-3 d-block">👥 Members
+                <span class="badge bg-secondary ms-1">{{ members|length }}</span>
+            </span>
+            {% if members %}
+                {% for member in members %}
+                <div class="d-flex align-items-center gap-2 mb-2">
+                    <div class="avatar">{{ member.username[0].upper() }}</div>
+                    <div>
+                        <div style="font-size:0.875rem;font-weight:500;color:#fff;">{{ member.username }}</div>
+                        <div style="font-size:0.75rem;color:#6B7A99;">{{ member.role }}</div>
+                    </div>
+                </div>
+                {% endfor %}
+            {% else %}
+                <p class="text-muted small mb-0">No students have joined yet.</p>
+            {% endif %}
+        </div>
+        <a href="/dashboard" class="btn btn-outline-secondary w-100">Back to dashboard</a>
+    </div>
+
+</div>
+{% endblock %}

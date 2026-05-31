@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}Create Class{% endblock %}
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card p-4">
+            <h4 class="mb-1">Create a Class</h4>
+            <p class="page-subtitle mb-4">A unique join code will be generated automatically</p>
+            <form method="POST">
+                <div class="mb-3">
+                    <label class="form-label">Class Name</label>
+                    <input type="text" name="name" class="form-control" placeholder="e.g. Mathematics 101" required>
+                </div>
+                <div class="mb-4">
+                    <label class="form-label">Subject</label>
+                    <input type="text" name="subject" class="form-control" placeholder="e.g. Algebra" required>
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Create Class</button>
+            </form>
+            <p class="text-center mt-3 mb-0" style="font-size:0.875rem;">
+                <a href="/dashboard">Back to dashboard</a>
+            </p>
+        </div>
+    </div>
+</div>
+{% endblock %}

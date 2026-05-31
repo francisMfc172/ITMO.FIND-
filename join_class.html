@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}Join Class{% endblock %}
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-5">
+        <div class="card p-4">
+            <h4 class="mb-1">Join a Class</h4>
+            <p class="page-subtitle mb-4">Ask your tesacher for the 6-character join code</p>
+            <form method="POST">
+                <div class="mb-4">
+                    <label class="form-label">Join Code</label>
+                    <input type="text" name="join_code" class="form-control text-center"
+                        placeholder="ABC123" maxlength="6" required
+                        style="font-size:1.5rem;font-weight:700;letter-spacing:0.3em;text-transform:uppercase;">
+                </div>
+                <button type="submit" class="btn btn-success w-100">Join Class</button>
+            </form>
+            <p class="text-center mt-3 mb-0" style="font-size:0.875rem;">
+                <a href="/dashboard">Back to dashboard</a>
+            </p>
+        </div>
+    </div>
+</div>
+{% endblock %}

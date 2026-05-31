@@ -1,0 +1,116 @@
+{% extends "base.html" %}
+{% block title %}Home{% endblock %}
+{% block content %}
+
+<!-- Hero Section -->
+<div class="text-center py-5 mb-5">
+    <div style="font-size:3.5rem;font-weight:800;color:#1a1a1a;letter-spacing:-1px;margin-bottom:0.5rem;">
+        itmo<span style="color:#10C75A;">.</span>find 🔍
+    </div>
+    <p style="font-size:1.2rem;color:#888;max-width:520px;margin:0 auto 2rem;">
+        The academic platform that brings your classes, books, homework and tests together in one place.
+    </p>
+    <div class="d-flex justify-content-center gap-3">
+        <a href="/register" class="btn btn-primary" style="padding:12px 32px;font-size:1rem;">Get started — it's free</a>
+        <a href="/login" class="btn btn-outline-primary" style="padding:12px 32px;font-size:1rem;">Log in</a>
+    </div>
+</div>
+
+<!-- What it feels like -->
+<div class="text-center mb-3">
+    <span style="font-size:0.8rem;font-weight:600;color:#10C75A;letter-spacing:0.1em;text-transform:uppercase;">Built for students and teachers</span>
+</div>
+
+<!-- Feature cards -->
+<div class="row g-4 mb-5">
+    <div class="col-md-3">
+        <div class="card p-4 h-100 text-center">
+            <div style="font-size:2rem;margin-bottom:1rem;">📚</div>
+            <div style="font-weight:700;font-size:1rem;margin-bottom:0.5rem;">Books & Materials</div>
+            <div class="page-subtitle">Teachers upload PDFs and documents. Students access everything in one click.</div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card p-4 h-100 text-center">
+            <div style="font-size:2rem;margin-bottom:1rem;">📝</div>
+            <div style="font-weight:700;font-size:1rem;margin-bottom:0.5rem;">Homework</div>
+            <div class="page-subtitle">Assign tasks with due dates. Students never miss a deadline again.</div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card p-4 h-100 text-center">
+            <div style="font-size:2rem;margin-bottom:1rem;">🧪</div>
+            <div style="font-weight:700;font-size:1rem;margin-bottom:0.5rem;">Tests</div>
+            <div class="page-subtitle">Build multiple choice tests. Auto-graded instantly when students submit.</div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card p-4 h-100 text-center">
+            <div style="font-size:2rem;margin-bottom:1rem;">👥</div>
+            <div style="font-weight:700;font-size:1rem;margin-bottom:0.5rem;">Class Groups</div>
+            <div class="page-subtitle">Create a class, share the join code. Your group is ready in seconds.</div>
+        </div>
+    </div>
+</div>
+
+<!-- How it works -->
+<div class="card p-5 mb-5">
+    <div class="text-center mb-4">
+        <span style="font-size:0.8rem;font-weight:600;color:#10C75A;letter-spacing:0.1em;text-transform:uppercase;">How it works</span>
+        <div style="font-size:1.4rem;font-weight:700;margin-top:0.5rem;">Up and running in 3 steps</div>
+    </div>
+    <div class="row g-4">
+        <div class="col-md-4 text-center">
+            <div style="width:48px;height:48px;border-radius:50%;background:#10C75A22;border:1px solid #10C75A44;color:#10C75A;font-size:1.2rem;font-weight:700;display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;">1</div>
+            <div style="font-weight:600;margin-bottom:0.4rem;">Create an account</div>
+            <div class="page-subtitle">Sign up as a teacher or student in under a minute.</div>
+        </div>
+        <div class="col-md-4 text-center">
+            <div style="width:48px;height:48px;border-radius:50%;background:#10C75A22;border:1px solid #10C75A44;color:#10C75A;font-size:1.2rem;font-weight:700;display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;">2</div>
+            <div style="font-weight:600;margin-bottom:0.4rem;">Create or join a class</div>
+            <div class="page-subtitle">Teachers create a class and share the join code with students.</div>
+        </div>
+        <div class="col-md-4 text-center">
+            <div style="width:48px;height:48px;border-radius:50%;background:#10C75A22;border:1px solid #10C75A44;color:#10C75A;font-size:1.2rem;font-weight:700;display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;">3</div>
+            <div style="font-weight:600;margin-bottom:0.4rem;">Start learning</div>
+            <div class="page-subtitle">Upload books, assign homework, build tests — all in one place.</div>
+        </div>
+    </div>
+</div>
+
+<!-- Comparison -->
+<div class="card p-5 mb-5">
+    <div class="text-center mb-4">
+        <span style="font-size:0.8rem;font-weight:600;color:#7C4DFF;letter-spacing:0.1em;text-transform:uppercase;">The idea behind itmo.find</span>
+        <div style="font-size:1.4rem;font-weight:700;margin-top:0.5rem;">The best of three worlds</div>
+    </div>
+    <div class="row g-3">
+        <div class="col-md-4">
+            <div style="background:#f7f5f2;border-radius:10px;padding:20px;border:1px solid #ddd;">
+                <div style="font-weight:700;font-size:1rem;margin-bottom:0.4rem;">GitHub</div>
+                <div class="page-subtitle">Version control and collaboration for code — we bring that same structure to academic content.</div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div style="background:#f7f5f2;border-radius:10px;padding:20px;border:1px solid #ddd;">
+                <div style="font-weight:700;font-size:1rem;margin-bottom:0.4rem;">Google Classroom</div>
+                <div class="page-subtitle">Assignments, classes and grading — we take the best parts and make them simpler.</div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div style="background:#f7f5f2;border-radius:10px;padding:20px;border:1px solid #ddd;">
+                <div style="font-weight:700;font-size:1rem;margin-bottom:0.4rem;">Discord</div>
+                <div class="page-subtitle">Group spaces and community — itmo.find keeps your class connected and organised.</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Bottom CTA -->
+<div class="text-center py-4">
+    <div style="font-size:1.4rem;font-weight:700;margin-bottom:0.75rem;">Ready to try it?</div>
+    <p class="page-subtitle mb-4">Join itmo.find and bring your class together today.</p>
+    <a href="/register" class="btn btn-primary" style="padding:12px 40px;font-size:1rem;">Create your account</a>
+</div>
+
+{% endblock %}
